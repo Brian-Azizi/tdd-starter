@@ -4,13 +4,22 @@
  ||_  _|  | _||_|  ||_| _||_|
  */
 
+enum LCD {
+  ONE = " \n|\n|",
+  TWO = " _ \n _|\n|_ ",
+  THREE = " _ \n _|\n _|",
+  FOUR = "   \n|_|\n  |",
+  FIVE = " _ \n|_ \n _|",
+  SIX = " _ \n|_ \n|_|",
+}
+
 function generateLCD(n: number): string {
-  if (n === 6) return " _ \n|_ \n|_|";
-  if (n === 5) return " _ \n|_ \n _|";
-  if (n === 4) return "   \n|_|\n  |";
-  if (n === 3) return " _ \n _|\n _|";
-  if (n === 2) return " _ \n _|\n|_ ";
-  return " \n|\n|";
+  if (n === 6) return LCD.SIX;
+  if (n === 5) return LCD.FIVE;
+  if (n === 4) return LCD.FOUR;
+  if (n === 3) return LCD.THREE;
+  if (n === 2) return LCD.TWO;
+  return LCD.ONE;
 }
 
 describe("digitToLcd", function () {
