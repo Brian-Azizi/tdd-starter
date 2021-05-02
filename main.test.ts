@@ -13,7 +13,10 @@ describe("PrimeFactors", function () {
     it.each([
       [2, [2]],
       [3, [3]],
+      [4, [2, 2]],
       [5, [5]],
+      [6, [2, 3]],
+      [10, [2, 5]],
     ])(
       "should return the prime factor decomposition when the input is %n",
       (n, factors) => {
