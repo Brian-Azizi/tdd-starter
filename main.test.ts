@@ -3,7 +3,7 @@ const lcdDigitMap = {
  _     _  _     _  _  _  _  _
 | |  | _| _||_||_ |_   ||_||_|
 |_|  ||_  _|  | _||_|  ||_| _|
- */
+  */
   0: [" _ ", "| |", "|_|"],
   1: ["   ", "  |", "  |"],
   2: [" _ ", " _|", "|_ "],
@@ -16,34 +16,27 @@ const lcdDigitMap = {
   9: [" _ ", "|_|", " _|"],
 };
 
+const splitIntoDigits = (n: number): number[] => {
+  const digits = [];
+  if (n === 0) digits.push(0);
+  while (n >= 1) {
+    digits.push(n % 10);
+    n = Math.floor(n / 10);
+  }
+  return digits.reverse();
+};
+
 function generateLCD(n: number): string {
-  if (n >= 100) {
-    const firstDigit = Math.floor(n / 100);
-    const secondDigit = Math.floor((n % 100) / 10);
-    const thirdDigit = n % 10;
-    const firstLcd = lcdDigitMap[firstDigit];
-    const secondLcd = lcdDigitMap[secondDigit];
-    const thirdLcd = lcdDigitMap[thirdDigit];
-    return [
-      firstLcd[0] + secondLcd[0] + thirdLcd[0],
-      firstLcd[1] + secondLcd[1] + thirdLcd[1],
-      firstLcd[2] + secondLcd[2] + thirdLcd[2],
-    ].join("\n");
-  }
-  if (n >= 10) {
-    const firstDigit = Math.floor(n / 10);
-    const secondDigit = n % 10;
-    const firstLcd = lcdDigitMap[firstDigit];
-    const secondLcd = lcdDigitMap[secondDigit];
-    return [
-      firstLcd[0] + secondLcd[0],
-      firstLcd[1] + secondLcd[1],
-      firstLcd[2] + secondLcd[2],
-    ].join("\n");
-  }
-  const digit = n % 10;
-  const lcd = lcdDigitMap[digit];
-  return [lcd[0], lcd[1], lcd[2]].join("\n");
+  const digits = splitIntoDigits(n);
+  return digits
+    .map((digit) => lcdDigitMap[digit])
+    .reduce(
+      (acc, digit) => {
+        return [acc[0] + digit[0], acc[1] + digit[1], acc[2] + digit[2]];
+      },
+      ["", "", ""]
+    )
+    .join("\n");
 }
 
 describe("digitToLcd", function () {
@@ -61,9 +54,9 @@ describe("digitToLcd", function () {
     [10, "    _ \n  || |\n  ||_|"],
     [88, " _  _ \n|_||_|\n|_||_|"],
     [234, " _  _    \n _| _||_|\n|_  _|  |"],
+    [7777, " _  _  _  _ \n  |  |  |  |\n  |  |  |  |"],
   ])("should print the LCD for %s", (input, expecteLcd) => {
     const lcd = generateLCD(input);
-    console.log(lcd);
     expect(lcd).toBe(expecteLcd);
   });
 });
