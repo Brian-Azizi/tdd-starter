@@ -5,11 +5,11 @@
  */
 
 function generateLCD(n: number): string {
-  return "";
+  return " \n|\n|";
 }
 
 describe("digitToLcd", function () {
-  it("should print the LCD", function () {
-    expect(generateLCD(1)).toBe(" \n|\n|");
+  it.each([[1, " \n|\n|"]])("should print the LCD for %s", (input, lcd) => {
+    expect(generateLCD(input)).toBe(lcd);
   });
 });
