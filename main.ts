@@ -6,6 +6,9 @@ export class PrimeFactors {
     if (n > 3 && n % 3 === 0) {
       return [3, n / 3];
     }
+    if (n > 5 && n % 5 === 0) {
+      return [5, n / 5];
+    }
     return [n];
   }
 }
