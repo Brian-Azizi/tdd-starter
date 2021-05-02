@@ -15,6 +15,15 @@ export class PrimeFactors {
     if (n >= 11) {
       result.push(11);
     }
+    if (n >= 13) {
+      result.push(13);
+    }
+    if (n >= 17) {
+      result.push(17);
+    }
+    if (n >= 19) {
+      result.push(19);
+    }
     return result;
   }
 
