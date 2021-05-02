@@ -2,7 +2,10 @@ export class PrimeFactors {
   PRIME_NUMBERS = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53];
 
   private generatePrimesUntil(n: number): number[] {
-    let result = [2];
+    let result = [];
+    if (n >= 2) {
+      result.push(2);
+    }
     if (n >= 3) {
       result.push(3);
     }

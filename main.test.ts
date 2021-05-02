@@ -32,6 +32,7 @@ describe("PrimeFactors", function () {
 
   describe.only("generatePrimesUntil", () => {
     it.each([
+      [1, []],
       [2, [2]],
       [3, [2, 3]],
       [4, [2, 3]],
