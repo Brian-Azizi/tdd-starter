@@ -12,6 +12,9 @@ export class PrimeFactors {
     if (n >= 7) {
       result.push(7);
     }
+    if (n >= 11) {
+      result.push(11);
+    }
     return result;
   }
 
