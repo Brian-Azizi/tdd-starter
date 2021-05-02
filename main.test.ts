@@ -1,12 +1,11 @@
-/*
-   _  _     _  _  _  _  _  _
- | _| _||_||_ |_   ||_||_|| |
- ||_  _|  | _||_|  ||_| _||_|
- */
-
 enum LCD {
+  /*
+ _     _  _     _  _  _  _  _
+| |  | _| _||_||_ |_   ||_||_|
+|_|  ||_  _|  | _||_|  ||_| _|
+ */
   ZERO = " _ \n| |\n|_|",
-  ONE = " \n|\n|",
+  ONE = "   \n  |\n  |",
   TWO = " _ \n _|\n|_ ",
   THREE = " _ \n _|\n _|",
   FOUR = "   \n|_|\n  |",
@@ -17,23 +16,27 @@ enum LCD {
   NINE = " _ \n|_|\n _|",
 }
 
+const lcdMap = {
+  0: LCD.ZERO,
+  1: LCD.ONE,
+  2: LCD.TWO,
+  3: LCD.THREE,
+  4: LCD.FOUR,
+  5: LCD.FIVE,
+  6: LCD.SIX,
+  7: LCD.SEVEN,
+  8: LCD.EIGHT,
+  9: LCD.NINE,
+};
+
 function generateLCD(n: number): string {
-  if (n === 0) return LCD.ZERO;
-  if (n === 9) return LCD.NINE;
-  if (n === 8) return LCD.EIGHT;
-  if (n === 7) return LCD.SEVEN;
-  if (n === 6) return LCD.SIX;
-  if (n === 5) return LCD.FIVE;
-  if (n === 4) return LCD.FOUR;
-  if (n === 3) return LCD.THREE;
-  if (n === 2) return LCD.TWO;
-  return LCD.ONE;
+  return lcdMap[n];
 }
 
 describe("digitToLcd", function () {
   it.each([
     [0, " _ \n| |\n|_|"],
-    [1, " \n|\n|"],
+    [1, "   \n  |\n  |"],
     [2, " _ \n _|\n|_ "],
     [3, " _ \n _|\n _|"],
     [4, "   \n|_|\n  |"],
