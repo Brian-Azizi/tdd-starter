@@ -1,7 +1,14 @@
-import { add } from "./main";
+import { PrimeFactors } from "./main";
 
-describe("add", function () {
-  it("should work", function () {
-    expect(add(1, 2)).toBe(3);
+describe("PrimeFactors", function () {
+  let primeFactors: PrimeFactors;
+  beforeEach(() => {
+    primeFactors = new PrimeFactors();
+  });
+
+  describe("generate", function () {
+    it("should not throw an error when called", function () {
+      expect(() => primeFactors.generate()).not.toThrow();
+    });
   });
 });
