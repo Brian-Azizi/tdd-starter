@@ -24,6 +24,7 @@ describe("PrimeFactors", function () {
       [14, [2, 7]],
       [15, [3, 5]],
       [25, [5, 5]],
+      [106, [2, 53]],
     ])("should return the decomposition for %s", (n, factors) => {
       expect(primeFactors.generate(n)).toStrictEqual(factors);
     });
