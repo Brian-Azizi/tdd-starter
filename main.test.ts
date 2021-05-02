@@ -1,32 +1,19 @@
-enum LCD {
+const lcdDigitMap = {
   /*
  _     _  _     _  _  _  _  _
 | |  | _| _||_||_ |_   ||_||_|
 |_|  ||_  _|  | _||_|  ||_| _|
  */
-  ZERO = " _ \n| |\n|_|",
-  ONE = "   \n  |\n  |",
-  TWO = " _ \n _|\n|_ ",
-  THREE = " _ \n _|\n _|",
-  FOUR = "   \n|_|\n  |",
-  FIVE = " _ \n|_ \n _|",
-  SIX = " _ \n|_ \n|_|",
-  SEVEN = " _ \n  |\n  |",
-  EIGHT = " _ \n|_|\n|_|",
-  NINE = " _ \n|_|\n _|",
-}
-
-const lcdMap = {
-  0: LCD.ZERO,
-  1: LCD.ONE,
-  2: LCD.TWO,
-  3: LCD.THREE,
-  4: LCD.FOUR,
-  5: LCD.FIVE,
-  6: LCD.SIX,
-  7: LCD.SEVEN,
-  8: LCD.EIGHT,
-  9: LCD.NINE,
+  0: [" _ ", "| |", "|_|"],
+  1: ["   ", "  |", "  |"],
+  2: [" _ ", " _|", "|_ "],
+  3: [" _ ", " _|", " _|"],
+  4: ["   ", "|_|", "  |"],
+  5: [" _ ", "|_ ", " _|"],
+  6: [" _ ", "|_ ", "|_|"],
+  7: [" _ ", "  |", "  |"],
+  8: [" _ ", "|_|", "|_|"],
+  9: [" _ ", "|_|", " _|"],
 };
 
 function generateLCD(n: number): string {
@@ -34,27 +21,29 @@ function generateLCD(n: number): string {
     const firstDigit = Math.floor(n / 100);
     const secondDigit = Math.floor((n % 100) / 10);
     const thirdDigit = n % 10;
-    const first = lcdMap[firstDigit].split("\n");
-    const second = lcdMap[secondDigit].split("\n");
-    const third = lcdMap[thirdDigit].split("\n");
+    const firstLcd = lcdDigitMap[firstDigit];
+    const secondLcd = lcdDigitMap[secondDigit];
+    const thirdLcd = lcdDigitMap[thirdDigit];
     return [
-      first[0] + second[0] + third[0],
-      first[1] + second[1] + third[1],
-      first[2] + second[2] + third[2],
+      firstLcd[0] + secondLcd[0] + thirdLcd[0],
+      firstLcd[1] + secondLcd[1] + thirdLcd[1],
+      firstLcd[2] + secondLcd[2] + thirdLcd[2],
     ].join("\n");
   }
   if (n >= 10) {
     const firstDigit = Math.floor(n / 10);
     const secondDigit = n % 10;
-    const first = lcdMap[firstDigit].split("\n");
-    const second = lcdMap[secondDigit].split("\n");
+    const firstLcd = lcdDigitMap[firstDigit];
+    const secondLcd = lcdDigitMap[secondDigit];
     return [
-      first[0] + second[0],
-      first[1] + second[1],
-      first[2] + second[2],
+      firstLcd[0] + secondLcd[0],
+      firstLcd[1] + secondLcd[1],
+      firstLcd[2] + secondLcd[2],
     ].join("\n");
   }
-  return lcdMap[n];
+  const digit = n % 10;
+  const lcd = lcdDigitMap[digit];
+  return [lcd[0], lcd[1], lcd[2]].join("\n");
 }
 
 describe("digitToLcd", function () {
