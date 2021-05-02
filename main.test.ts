@@ -1,14 +1,14 @@
 import { PrimeFactors } from "./main";
 
 describe("PrimeFactors", function () {
-  let generate: (n: number) => number[];
+  let primeFactors: PrimeFactors;
   beforeEach(() => {
-    generate = new PrimeFactors().generate;
+    primeFactors = new PrimeFactors();
   });
 
   describe("generate", function () {
     it("should not throw an error when called", function () {
-      expect(() => generate(2)).not.toThrow();
+      expect(() => primeFactors.generate(2)).not.toThrow();
     });
     it.each([
       [2, [2]],
@@ -20,11 +20,12 @@ describe("PrimeFactors", function () {
       [8, [2, 2, 2]],
       [9, [3, 3]],
       [10, [2, 5]],
+      [11, [11]],
       [14, [2, 7]],
       [15, [3, 5]],
       [25, [5, 5]],
     ])("should return the decomposition for %s", (n, factors) => {
-      expect(generate(n)).toStrictEqual(factors);
+      expect(primeFactors.generate(n)).toStrictEqual(factors);
     });
   });
 });

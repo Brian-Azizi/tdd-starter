@@ -1,21 +1,15 @@
 export class PrimeFactors {
+  PRIME_NUMBERS = [2, 3, 5, 7, 11];
+
   public generate(n: number): number[] {
     let result = [];
-    while (n >= 2 && n % 2 === 0) {
-      result.push(2);
-      n = n / 2;
-    }
-    while (n >= 3 && n % 3 === 0) {
-      result.push(3);
-      n = n / 3;
-    }
-    while (n >= 5 && n % 5 === 0) {
-      result.push(5);
-      n = n / 5;
-    }
-    while (n >= 7 && n % 7 === 0) {
-      result.push(7);
-      n = n / 7;
+    while (n > 1) {
+      for (let p of this.PRIME_NUMBERS) {
+        while (n % p === 0) {
+          result.push(p);
+          n = n / p;
+        }
+      }
     }
     return result;
   }
