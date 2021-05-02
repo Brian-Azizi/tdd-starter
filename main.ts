@@ -1,15 +1,7 @@
-export class PrimeFactors {
-  public generate(n: number): number[] {
-    let result = [];
-    for (let i = 2; i <= n; i++) {
-      if (n >= i) {
-        while (n % i === 0) {
-          result.push(i);
-          n = n / i;
-        }
-      }
-    }
+export function generatePrimeFactors(n: number): number[] {
+  let primeFactors: number[] = [];
+  for (let candidate = 2; candidate <= n; candidate++)
+    for (; n % candidate === 0; n /= candidate) primeFactors.push(candidate);
 
-    return result;
-  }
+  return primeFactors;
 }
