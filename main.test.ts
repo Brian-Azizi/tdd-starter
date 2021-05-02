@@ -23,11 +23,8 @@ describe("PrimeFactors", function () {
       [14, [2, 7]],
       [15, [3, 5]],
       [25, [5, 5]],
-    ])(
-      "should return the prime factor decomposition when the input is %n",
-      (n, factors) => {
-        expect(generate(n)).toStrictEqual(factors);
-      }
-    );
+    ])("should return the decomposition for %s", (n, factors) => {
+      expect(generate(n)).toStrictEqual(factors);
+    });
   });
 });
