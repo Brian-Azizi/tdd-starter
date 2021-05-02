@@ -1,7 +1,15 @@
-import { add } from "./main";
+/*
+   _  _     _  _  _  _  _  _
+ | _| _||_||_ |_   ||_||_|| |
+ ||_  _|  | _||_|  ||_| _||_|
+ */
 
-describe("add", function () {
-  it("should work", function () {
-    expect(add(1, 2)).toBe(3);
+function generateLCD(n: number): string {
+  return "";
+}
+
+describe("digitToLcd", function () {
+  it("should print the LCD", function () {
+    expect(generateLCD(1)).toBe(" \n|\n|");
   });
 });
