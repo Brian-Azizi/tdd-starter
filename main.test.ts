@@ -10,7 +10,11 @@ describe("PrimeFactors", function () {
     it("should not throw an error when called", function () {
       expect(() => generate(2)).not.toThrow();
     });
-    it.each([[2, [2]]])(
+    it.each([
+      [2, [2]],
+      [3, [3]],
+      [5, [5]],
+    ])(
       "should return the prime factor decomposition when the input is %n",
       (n, factors) => {
         expect(generate(n)).toStrictEqual(factors);
